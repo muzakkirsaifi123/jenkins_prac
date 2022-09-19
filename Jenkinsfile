@@ -7,6 +7,9 @@ pipeline {
     tools {
         maven 'Maven' 
     }
+    environment {
+        Name = "MuZakkir"
+    }
 
     stages {
 
@@ -14,7 +17,7 @@ pipeline {
 
             steps{
                 sh "mvn test"
-                
+                slackSend channel: 'jenkins', message: 'Your job had been started by $Name'
             }
             
         }
