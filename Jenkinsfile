@@ -7,10 +7,10 @@ pipeline {
     tools {
         maven 'Maven' 
     }
-    environment {
-        Name = "MuZakkir"
-    }
+    parameters {
+        string defaultValue: 'MuZakkir', description: 'This is first string', name: 'Name'
 
+    }
     stages {
 
         stage("Test"){
