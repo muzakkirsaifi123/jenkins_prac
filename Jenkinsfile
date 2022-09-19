@@ -57,6 +57,8 @@ pipeline {
         }
         success{
             echo "========pipeline executed successfully ========"
+            slackSend channel: 'jenkins', message: 'Your job runed by $Name successfully'
+
         }
         failure{
             echo "========pipeline execution failed========"
