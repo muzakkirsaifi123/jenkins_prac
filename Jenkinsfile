@@ -17,7 +17,7 @@ pipeline {
 
             steps{
                 sh "mvn test"
-                slackSend channel: 'devopslearning', message: 'Your job had been started by $Name'
+                slackSend channel: 'devopslearning', message: 'Your job had been started by ${Name}'
             }
             
         }
@@ -59,7 +59,7 @@ pipeline {
         }
         success{
             echo "========pipeline executed successfully ========"
-            slackSend channel: 'devopslearning', message: 'Your job runed by $Name successfully'
+            slackSend channel: 'devopslearning', message: 'Your job runed by ${Name} successfully'
 
         }
         failure{
