@@ -12,6 +12,11 @@ pipeline {
 
     }
     stages {
+        stage("Tools initialization") {
+            steps {
+                sh "mvn --version"
+            }
+        }
 
         stage("Test"){
 
@@ -32,6 +37,9 @@ pipeline {
         }
 
         stage("Deploy on Test") {
+            when {
+                branch 'main'
+            }
 
             steps{
                 deploy adapters: [tomcat9(credentialsId: 'tomcat-admin', path: '', url: 'http://65.2.168.134:8080')], contextPath: '/app', war: '**/*.war'
@@ -40,13 +48,15 @@ pipeline {
             
         }
         stage("Deploy on Prod"){
+            when {
+                branch 'prod'
+            }
              input {
-                message "Should we continue?"
+                message "Should we continue to deploy on Prod?"
                 ok "Yes we Should"
             }
             
             steps{
-                echo "passe please"
                 deploy adapters: [tomcat9(credentialsId: 'tomcat-admin', path: '', url: 'http://43.204.116.89:8080')], contextPath: '/app', war: '**/*.war'
 
             }
@@ -55,7 +65,7 @@ pipeline {
     
     post{
         always{
-            echo "========always========"
+            echo "Always running"
         }
         success{
             echo "========pipeline executed successfully ========"
