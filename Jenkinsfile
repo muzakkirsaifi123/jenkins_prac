@@ -65,7 +65,7 @@ pipeline {
     
     post{
         always{
-            echo "Always give you  the status of running"
+            echo "Always running"
         }
         success{
             echo "========pipeline executed successfully ========"
