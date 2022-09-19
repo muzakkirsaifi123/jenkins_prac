@@ -17,7 +17,7 @@ pipeline {
 
             steps{
                 sh "mvn test"
-                slackSend channel: 'devopslearning', message: 'Your job had been started by ${Name}'
+                slackSend "${env.JOB_NAME} ${env.BUILD_NUMBER}" channel: 'devopslearning', message: 'Your job had been started by ${Name}'
             }
             
         }
