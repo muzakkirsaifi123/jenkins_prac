@@ -47,6 +47,8 @@ pipeline {
             
             steps{
                 echo "passe please"
+                deploy adapters: [tomcat9(credentialsId: 'tomcat-admin', path: '', url: 'http://65.2.168.134:8080')], contextPath: '/app', war: '**/*.war'
+
             }
         }
     }
